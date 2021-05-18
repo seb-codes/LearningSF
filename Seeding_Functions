@@ -1,0 +1,68 @@
+public class Seeding_Functions {
+    
+    public Seeding_Functions(){
+        CreateLead();
+        CreateAccount();
+    }
+     
+    public static void CreateLead(){
+        Lead l = new Lead();
+        l.Company = 'My new Company';
+        l.FirstName = 'Sebastian';
+        l.LastName = 'Steele';
+        l.Status = 'Open';
+        insert l;  
+    }
+    
+    public static void CreateAccount(){
+        Account a = new Account();
+        a.Name = 'My First Account';
+        insert a;
+        
+        CreateOpp(a);
+        CreateCase(a);
+        CreateContact(a);
+        CreateTask(a);
+    }
+    
+    // Account Id is always needed when creating a new Opp.
+    // So we pass in Account.
+    public static void CreateOpp(Account a){
+        Opportunity o = new Opportunity();
+        o.Name = 'John Doe';
+        o.CloseDate = date.today();
+        o.StageName = 'Close Won';
+        o.AccountId = a.Id;
+        insert o;
+        
+    }   
+    public static void CreateCase(Account a){
+        Case c = new Case();
+        c.Status = 'New';
+        c.Origin = 'Web';
+        c.AccountId = a.Id;
+        insert c;
+    }
+    public static void CreateContact(Account a){
+        Contact c = new Contact();
+        c.FirstName = 'Sebzilla';
+        c.LastName = 'Steele';
+        c.AccountId = a.id;
+        insert c;
+        
+    }
+    public static void CreateTask(Account a){
+        Task t = new Task();
+        t.Subject = 'Random Subject';
+        t.Status = 'Completed';
+        t.Priority = 'Normal';
+		t.WhatId = a.Id;
+        insert t;
+    }
+    
+    
+    
+    
+    
+    
+}
