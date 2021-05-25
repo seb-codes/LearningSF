@@ -1,0 +1,87 @@
+public class Learning_Functions {
+    
+    // this is the CONSTRUCTOR\
+    // new Learning_Functions(); <- To run the Constructor
+    public Learning_Functions(){
+        MethodOne();
+        MethodTwo();
+        MethodThree();
+        MethodFour();
+    }
+
+    public static void MethodOne(){
+        integer argone = 3;
+        integer argtwo = 6;
+        integer argthree = argone + argtwo;
+        system.debug('My First Equation: ' + argthree);        
+    }
+    
+    public static void MethodTwo(){
+        String boi = 'hi';
+        String girl = 'world';
+        string sum = boi + girl;
+        system.debug('My First String: ' + sum);
+    }
+
+    public static void MethodThree(){
+        String withnum = '3';
+        integer num = 7;
+        integer sum = Integer.valueOf(withnum) + num;
+        system.debug('OH GOD NO: ' + sum);      
+    }
+    
+    public static void MethodFour(){
+        String withnum = '3';
+        integer num = 7;
+        String sum = String.valueOf(num) + withnum;
+        system.debug('OH GOD YES: ' + sum);      
+    }
+    
+    public static void CreateLead(){   
+        Lead l = new Lead();
+        l.Company = 'My new Company';
+        l.FirstName = 'Sebastian';
+        l.LastName = 'Steele';
+        l.Status = 'Open';
+        insert l;       
+    }
+    
+    public static void EmptyStringList(){
+        List<String> Emp = new List<String>();
+        Emp.add('Add_something to the string');
+        System.debug('HERE IS YOUR LIST BRO' + Emp);
+    }
+    
+    public static List<Integer> EmptyIntList(){
+		List<Integer> Emp_int = new List<Integer>();
+        Emp_int.add(99);
+        Emp_int.add(66);
+        System.debug('HERE IS YOUR LIST BRO' + Emp_int);
+        System.debug(Emp_int.get(0));
+        System.debug(Emp_int[0]);
+        return Emp_int;
+    }
+    
+    public static void AllAccounts(){
+        List<Account> a = [SELECT Id, Name FROM Account];
+        List<Account> a1 = [SELECT Id FROM Account];
+        List<Account> a2 = [SELECT Id FROM Account];
+        List<Account> a3 = [Select Id from Account];
+        List<Account> a4 = [select Id from Account];
+        List<Account> a5 = [select id from account];
+        List<account> a6 = [select id from account];
+        list<account> a7 = [select id from account];
+        list<account> a8 = [select id from account];
+        list<account> a9 = [select id from account];
+        list<account> a10 = [select id from account];
+           
+        
+        for(Account acc: a){
+            System.debug('HERE WE GO BOI' + acc);
+        }
+        
+        System.debug('HERES SOME ACCOUNT YOU WANTED' + a[0]);
+        
+    }
+    
+}
