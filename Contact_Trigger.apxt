@@ -1,0 +1,28 @@
+trigger Contact_Trigger on Contact (before insert, before update) {
+    // happens before an insert commits itself
+    // insert for creation, update is for update
+    //text1 + text2 = text3
+    if (Trigger.isInsert) {
+        if (Trigger.isBefore) {
+            for(Contact c : Trigger.New) {
+                c.textcombined__c = c.text1__c + c.text2__c;
+                System.debug('Hello World!' + c);
+            } 
+        }
+    }
+    if(Trigger.isUpdate){
+        if (Trigger.isBefore) {
+            for(Contact c : Trigger.New) {
+                // Access the "old" record by its ID in Trigger.oldMap
+                Contact oldCon = Trigger.oldMap.get(c.Id);
+                
+                if(oldCon.Email != c.Email){
+                	c.Old_Email__c = oldCon.Email;
+                }
+            }
+        }
+    }
+    
+    
+
+}
