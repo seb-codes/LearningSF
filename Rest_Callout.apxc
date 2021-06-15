@@ -1,0 +1,68 @@
+public class Rest_Callout {
+    public static void firstCallout(){
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://th-apex-http-callout.herokuapp.com/animals');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        // If the request is successful, parse the JSON response.
+        if (response.getStatusCode() == 200) {
+            // Deserialize the JSON string into collections of primitive data types.
+            Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+            // Cast the values in the 'animals' key as a list
+            List<Object> animals = (List<Object>) results.get('animals');
+            System.debug('Received the following animals:');
+            for (Object animal: animals) {
+                System.debug(animal);
+            }
+        }
+    }
+    
+    public static void secondCallout(){
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('https://wordapi.herokuapp.com/word');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        system.debug(response);
+        if(response.getStatusCode() == 200){
+            // line 30 broke
+            // Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+            //system.debug(results);
+            //
+            // lets print the getbody.
+            system.debug(response.getBody());
+            // wow i think i found the answer on accident
+            string result = response.getBody();
+            system.debug(result);
+        }
+    }
+    
+    public static void thirdCallout(){
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('http://data.fixer.io/api/latest?access_key=YOUR_ACCESS_KEY');
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        system.debug(response);
+        if(response.getStatusCode()==200){
+            // checking what the body looks like
+            system.debug(response.getBody());
+            // json format, so turn it into a map
+            Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+            // checking all the possible keys
+            system.debug(results.keySet());
+            // rates looks like its in json structure. lets get it into a map.
+            Map<String, Object> rates = (Map<String, Object>) results.get('rates');
+            system.debug(rates);
+            system.debug(rates.keySet());
+            
+            for(String key: rates.keyset()){
+                // i know i can use String.format, but i dont know what type to use for the rate itself
+                System.debug('1 EUR = '+ rates.get(key)+' '+ key);
+            }
+            
+        }
+    }
+
+}
