@@ -80,8 +80,54 @@ public class Learning_Functions {
             System.debug('HERE WE GO BOI' + acc);
         }
         
-        System.debug('HERES SOME ACCOUNT YOU WANTED' + a[0]);
+        System.debug('HERES SOME ACCOUNT YOU WANTED' + a[0]);      
+    }
+    
+    public static void FirstMap(){
+        Map<Integer, String> m = new Map<Integer, String>();
+        m.put(1, 'First entry');
+        m.put(2, 'Second entry');
+        System.assert(m.containsKey(1));
+        String value = m.get(2);
+        System.assertEquals('Second entry', value);
+        Set<Integer> s = m.keySet();
+    }
+    
+    public static void sObjectMap(){
+        
+        List<account> a = [select Id from account];
+        Map<ID, Account> m = new Map<ID, Account>();
+        
+        for(account x: a){
+            m.put(x.id, x);
+        }
+        
+        system.debug(m);
         
     }
+    
+    
+    public static void ContactAccountMap(){
+        
+        list<contact> c = [select id, AccountId from contact where AccountId != NULL];
+        Map<ID, Contact> m = new Map<Id,Contact>();
+        
+        for(contact x: c){
+            m.put(x.AccountId, x);
+        }
+        
+        system.debug(m);
+        
+        
+    }
+    
+    public static void GetApiKey(){
+        
+        Secure_Api_Key__mdt keys = [select DeveloperName, Publishable_Api_Key__c, Secret_Api_Key__c from Secure_Api_Key__mdt where DeveloperName = 'Second_Key' limit 1];
+        
+        system.debug(keys.Publishable_Api_Key__c);
+        
+    }
+    
     
 }
