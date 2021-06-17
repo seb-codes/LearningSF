@@ -1,0 +1,9 @@
+public class Account_Functions {
+    @AuraEnabled
+    public static Account getAccounts(String acc_id){
+        // to declare variable in soql statement use : before the variable name (:acc_id)
+        Account result = [SELECT ID, name from Account where id = :acc_id];
+        return result;
+    }
+    
+}
