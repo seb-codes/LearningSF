@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Account_Functions">
+<aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="return_response" type="Account"/>
+    
+<article class="slds-card">
+  <div class="slds-card__body slds-card__body_inner">Account name = {!v.return_response.Name}</div>
+  <footer class="slds-card__footer">
+    <a class="slds-card__footer-action" href="#">View All
+      <span class="slds-assistive-text">Accounts</span>
+    </a>
+  </footer>
+</article>
+	
+</aura:component>
